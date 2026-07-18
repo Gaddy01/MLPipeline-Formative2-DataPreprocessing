@@ -1,25 +1,73 @@
-# Multimodal Data Preprocessing
+# Multimodal Data Preprocessing Project
 
-## Assignment Overview
+## Project Overview
 
-This repository documents a multimodal machine learning pipeline for a user-authentication and product-recommendation system. The project combines tabular customer data, facial images, and audio samples to build three complementary models:
+This repository contains a complete multimodal machine learning workflow for a user-authentication and product-recommendation system. The project combines:
 
-- a product recommendation model,
-- a facial recognition model, and
-- a voiceprint verification model.
+- tabular customer data,
+- facial image data,
+- and audio voice samples,
 
-The overall workflow simulates a real-world decision process in which a user must pass face and voice verification before a transaction or product suggestion is approved.
+to build three different models:
 
-## Project Goal
+1. a facial recognition model,
+2. a voiceprint verification model,
+3. and a product recommendation model.
 
-The objective of this assignment is to:
+The system simulates a secure decision flow where a user must pass face and voice authentication before a product recommendation is produced.
 
-1. merge customer social and transaction data into a single predictive dataset,
-2. preprocess and engineer features for machine learning,
-3. collect and process image and audio data,
-4. build authentication models for face and voice verification,
-5. train and evaluate a product recommendation model, and
-6. demonstrate a multimodal decision flow for authorized and unauthorized access attempts.
+---
+
+## What This Repository Contains
+
+The project now includes a full end-to-end structure:
+
+- a Jupyter notebook for preprocessing and experimentation,
+- a Python command-line application for running the full authentication and prediction flow,
+- trained model files,
+- engineered datasets,
+- utility modules for face and voice processing,
+- and a dependency list for installation.
+
+---
+
+## Repository Structure
+
+```text
+MLPipeline-Formative2-DataPreprocessing/
+├── app.py
+├── requirements.txt
+├── multimodal_data_preprocessing.ipynb
+├── README.md
+├── feature_engineered datasets/
+│   ├── audio_features.csv
+│   ├── image_features.csv
+│   └── merged_customer_data_with_engineerd_features.csv
+├── models/
+│   ├── facial_recognition_rf_model.pkl
+│   ├── product_recommendation_model.pkl
+│   └── voiceprint_verification_model.pkl
+├── test_samples/
+└── utils/
+    ├── face_utils.py
+    ├── prediction.py
+    └── voice_utils.py
+```
+
+---
+
+## Assignment Goal
+
+The main objectives of the assignment are to:
+
+1. merge social profile and transaction data,
+2. clean and engineer features for machine learning,
+3. collect and preprocess image and audio data,
+4. build face and voice authentication models,
+5. train a product recommendation system,
+6. and demonstrate a multimodal approval workflow.
+
+---
 
 ## Dataset Sources
 
@@ -115,48 +163,117 @@ The best-performing model was Random Forest, which achieved:
 
 These results indicate that the engineered merged dataset contained strong predictive signals for classifying product categories.
 
-### 5. Multimodal Decision Logic
+### 5. Multimodal Authentication Demo
 
-The notebook combines the three trained systems into a multimodal authentication and recommendation workflow:
+The final application, app.py, runs a complete interactive workflow:
 
-- face recognition checks whether the user matches a known registered identity,
-- voiceprint verification checks whether the provided voice sample belongs to the same user,
-- and the product model decides whether the requested recommendation or transaction should be approved.
+- Step 1: face recognition,
+- Step 2: voice verification,
+- Step 3: product recommendation.
 
-This creates a security-style decision flow in which a user must pass the biometric checks before proceeding to the recommendation step.
+The system only proceeds if both biometric checks pass and the face and voice belong to the same identity.
 
-## Repository Contents
+---
 
-- [multimodal_data_preprocessing.ipynb](multimodal_data_preprocessing.ipynb) — the full notebook containing the preprocessing, modeling, and evaluation workflow.
-- [model](model) — trained model artifacts for the facial recognition, voiceprint verification, and product recommendation pipelines.
-- [README.md](README.md) — project documentation.
+## How to Run the Project
 
-## Files Produced During the Workflow
+Follow these steps in order.
 
-The notebook generates several outputs, including:
+### Step 1: Clone the repository
 
-- merged customer data CSVs,
-- image feature extraction outputs,
-- audio feature extraction outputs,
-- and trained model files stored in [model](model).
+```bash
+git clone <repo-url>
+cd MLPipeline-Formative2-DataPreprocessing
+```
 
-## How to Use This Repository
+### Step 2: Create and activate a virtual environment
 
-1. Open [multimodal_data_preprocessing.ipynb](multimodal_data_preprocessing.ipynb) in Jupyter or VS Code.
-2. Run the notebook cells in order to reproduce the preprocessing, model training, and evaluation steps.
-3. Review the trained models stored in [model](model) for inference or further experimentation.
-4. Use the notebook’s workflow as a foundation for extending the system into a command-line demo or a web-based application.
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-## Notes
+### Step 3: Install the dependencies
 
-This project is a prototype implementation aimed at demonstrating how multimodal data preprocessing and authentication can be combined for a realistic decision-support system. The notebook provides the core pipeline and model evaluation logic, while the trained model files make the workflow easier to reuse.
+```bash
+pip install -r requirements.txt
+```
+
+> The requirements file includes the libraries needed for data processing, machine learning, image analysis, audio processing, and model loading.
+
+### Step 4: Open the notebook (optional)
+
+You can inspect the full workflow in:
+
+```text
+multimodal_data_preprocessing.ipynb
+```
+
+Run the notebook cells in order if you want to reproduce the preprocessing, feature extraction, and model training steps.
+
+### Step 5: Run the command-line application
+
+Once the environment is ready, run:
+
+```bash
+python app.py
+```
+
+The program will prompt you for:
+
+- a face image path,
+- a voice recording path in WAV format,
+- and then the product prediction inputs.
+
+### Step 6: Use sample files if needed
+
+The repository contains a test_samples folder for trying the application. If you have your own files, provide their full paths when prompted.
+
+---
+
+## How the CLI Application Works
+
+When you run app.py, the program will:
+
+1. load the trained face, voice, and product models,
+2. ask for a face image,
+3. extract face embeddings and verify identity,
+4. ask for a voice recording,
+5. extract voice features and verify the speaker,
+6. ensure the face and voice belong to the same user,
+7. and finally request transaction details to produce a product prediction.
+
+If face recognition or voice verification fails, the application stops and shows an access denied message.
+
+---
+
+## Important Notes
+
+- The voice input must be a WAV file.
+- The face input should be an image file that contains a visible face.
+- The trained models are already stored in the models directory, so you can run the app without retraining immediately.
+- If you want to retrain models, use the notebook as the main reference.
+
+---
+
+## Expected Output
+
+A successful run will:
+
+- recognize the face,
+- verify the voice,
+- confirm identity,
+- and print a predicted product category.
+
+---
 
 ## Summary
 
-This assignment was completed by building a complete preprocessing and modeling pipeline that:
+This repository provides a full multimodal pipeline for:
 
-- merges tabular customer datasets,
-- prepares image and audio data,
-- creates biometric-style authentication models,
-- trains a product recommendation model,
-- and documents the end-to-end multimodal workflow in a reproducible notebook.
+- data preprocessing,
+- image and audio feature extraction,
+- biometric-style authentication,
+- and product recommendation.
+
+It includes both the notebook-based development workflow and the runnable command-line application for demonstration.
