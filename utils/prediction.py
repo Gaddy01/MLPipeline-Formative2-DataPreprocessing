@@ -96,8 +96,16 @@ def make_prediction(model):
     prediction = model.predict(X)[0]
     probability = model.predict_proba(X).max()
 
-    #le = LabelEncoder()
-    #recommended_product = le.inverse_transform([prediction])[0]
+    if prediction == 1:
+        prediction = "Sports"
+    elif prediction == 2:
+        prediction = "Electronics"
+    elif prediction == 3:
+        prediction = "Clothing"
+    elif prediction == 4:
+        prediction = "Groceries"
+    elif prediction == 5:
+        prediction = "Books"
 
     print("\n" + "=" * 55)
     print("  ------- Prediction Result -------")
