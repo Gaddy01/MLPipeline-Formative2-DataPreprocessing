@@ -279,8 +279,12 @@ This repository provides a full multimodal pipeline for:
 It includes both the notebook-based development workflow and the runnable command-line application for demonstration.
 
 
-TEAM NAMES 
+## TEAM NAMES 
+
 1.Francis MUTABAZI 
+
 2.Gaddie Irakoze
+
 3. Gabriel TUYISINGIZE SEZIBERA
+   
 4.Carla BATONI
