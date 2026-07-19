@@ -285,6 +285,6 @@ It includes both the notebook-based development workflow and the runnable comman
 
 2.Gaddie Irakoze
 
-3. Gabriel TUYISINGIZE SEZIBERA
+3.Gabriel TUYISINGIZE SEZIBERA
    
 4.Carla BATONI
